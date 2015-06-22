@@ -1,0 +1,25 @@
+<template>
+  <require from='./book-read-icon'></require>
+
+  <table class="table table-striped table-hover">
+    <tr>
+      <th class="col-md-1">ID</th>
+      <th class="col-md-4">Title</th>
+      <th class="col-md-3">Author</th>
+      <th class="col-md-2">No. of pages</th>
+      <th class="col-md-1">Read?</th>
+      <th class="col-md-1">Actions</th>
+    </tr>
+    <tr repeat.for="book of books">
+      <td>${book.id}</td>
+      <td>${book.title}</td>
+      <td>${book.author}</td>
+      <td>${book.pages}</td>
+      <td><book-read-icon book.one-time="book"></book-read-icon></td>
+      <td>
+        <a route-href="route: edit; params.bind: { bookId: book.id }">edit</a>
+      </td>
+    </tr>
+  </table>
+
+</template>

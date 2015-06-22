@@ -1,0 +1,23 @@
+<template>
+  <form class="col-md-4">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" placeholder="Title" value.bind="book.title">
+    </div>
+    <div class="form-group">
+      <label for="author">Author</label>
+      <input type="text" class="form-control" id="author" placeholder="Author" value.bind="book.author">
+    </div>
+    <div class="form-group">
+      <label>
+        Read? <input type="checkbox" checked.bind="book.read">
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="pages">No. of pages</label>
+      <input type="number" class="form-control" id="pages" value.bind="book.pages">
+    </div>
+    <a route-href="route:list">Back</a>
+    <button type="submit" class="btn btn-success" click.delegate="save()">Save</button>
+  </form>
+</template>
