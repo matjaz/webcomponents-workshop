@@ -31,4 +31,8 @@ describe('the App module', () => {
     expect(sut.router.routes).toContain({ route: ['','welcome'],  moduleId: './welcome', nav: true, title:'Welcome' });
   });
 
+  it('should have a flickr route', () => {
+     expect(sut.router.routes).toContain({ route: 'flickr', moduleId: './flickr', nav: true, title:'Flickr' });
+  });
+
 });
