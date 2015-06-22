@@ -4,7 +4,7 @@
       <div class="row au-stagger">
         <div class="col-sm-6 col-md-3 flickr-img au-animate" repeat.for="image of images">
           <a class="thumbnail">
-            <img src.bind="image.media.m"/>
+            <img src.one-way="image.media.m"/>
           </a>
         </div>
       </div>

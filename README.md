@@ -1,6 +1,6 @@
 
 # Aurelia app
-    See [client/README.md](client/README.md)
+See [aurelia/README.md](aurelia/README.md)
 
 # Server
 
