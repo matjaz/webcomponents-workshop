@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Web components</title>
+
+		<meta name="description" content="Exploring future of web dev with web components.">
+		<meta name="author" content="Matjaž Lipuš">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+					<h1>Web components</h1>
+					<h3>Future of web dev</h3>
+					<p>
+						<small><a href="https://twitter.com/MatjazL">Matjaž Lipuš</a> / <a href="https://twitter.com/MatjazL">@MatjazL</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Agenda</h2>
+					<ul>
+						<li>SPA</li>
+						<li>Current state</li>
+						<li>Future technologies</li>
+						<li>Lets build an app</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Pre SPA</h2>
+					<ul>
+						<li class="fragment">jQuery</li>
+						<li class="fragment">element.click(handler)</li>
+						<li class="fragment">$.ajax()</li>
+						<li class="fragment">element.html(result)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>SPA</h2>
+					<ul>
+						<li>router</li>
+						<li>templates</li>
+						<li>app state</li>
+						<li>data</li>
+						<li>MVC</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>SPA tooling</h2>
+					<ul>
+						<li>haml, jade</li>
+						<li>less, scss</li>
+						<li>ES6 (Babel)</li>
+						<li>TypeScript</li>
+						<li>npm, bower, jspm</li>
+						<li>grunt, gulp</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>SPA frameworks</h2>
+					<ul>
+						<li>router (state, url)</li>
+						<li>components</li>
+						<li>templating</li>
+						<li>helpers (http, url)</li>
+						<li>dependency injection</li>
+						<li>simple testing</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>SPA frameworks</h2>
+					<ul>
+						<li>Backbone.js</li>
+						<li>Knockout</li>
+						<li>EmberJS</li>
+						<li>React + Flux</li>
+						<li>AngularJS</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Backbone.js</h2>
+					<ul>
+						<li>templates</li>
+						<li>models/collections</li>
+						<li>routing</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Knockout</h2>
+					<ul>
+						<li>two way binding</li>
+						<li>custom events</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>EmberJS</h2>
+					<ul>
+						<li>structured code</li>
+						<li>convention over configuration</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>React + Flux</h2>
+					<ul>
+						<li>virtual DOM (diff, fast updates)</li>
+						<li>JSX</li>
+						<li>evented approach (dispatcher)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular 1</h2>
+					<ul>
+						<li>MVVM</li>
+						<li>Dependency Injection</li>
+						<li>Unit testing (karma)</li>
+						<li>Integration testing (protractor)</li>
+						<li>5 years ago</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>ES6 - ES 2015</h2>
+					<ul>
+						<li>official standard since last week ;)</li>
+						<li>class syntax, arrow functions, maps, sets, promises, generators</li>
+						<li>Still JavaScript (prototypal inheritance)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>ES6 Promise</h2>
+					<pre><code>new Promise(function(resolve, reject) {
+  async(function(error, response) {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(response);
+    }
+  })
+});</code></pre>
+					<ul>
+						<li>Promise.all([])</li>
+						<li>Promise.resolve()</li>
+						<li>Promise.reject()</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>fetch()</h2>
+					<pre><code>bower install fetch</pre></code>
+<pre><code class="fragment">fetch('/users')
+  .then(function(response) {
+    return response.json();
+  }).then(function(json) {
+    console.log('parsed json', json);
+  }).catch(function(ex) {
+    console.error('parsing failed', ex);
+  })
+</pre></code>
+<pre><code class="fragment">fetch('/users', {
+  method: 'post',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'Bart',
+    login: 'user'
+  })
+})</pre></code>
+				</section>
+
+				<section>
+					<h2>ES7 decorators</h2>
+<pre><code>@inject(Users)
+class List {
+  constructor(Users) {
+    this.Users = Users;
+  }
+  fetchUser(id) {
+    return this.Users.fetch(id);
+  }
+}</pre></code>
+<pre><code>class Person {
+  firstName = 'John';
+  lastName = 'Doe';
+
+  @computedFrom('firstName', 'lastName')
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}</pre></code>
+				</section>
+
+				<section>
+					<h2>Web components</h2>
+					<pre><code><hello-there name="everybody"></hello-there></pre></code>
+					<p class="fragment">Abstraction and encapsulation</p>
+					<ul>
+						<li class="fragment">Templates</li>
+						<li class="fragment">HTML imports</li>
+						<li class="fragment">Shadow DOM</li>
+						<li class="fragment">Custom elements</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Web components today</h2>
+					<p>Chrome's "built-in" components</p>
+					<input type="datetime-local"><br>
+					<video height="50%" src="http://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4" controls></video>
+					<p><a href="http://caniuse.com/#search=web%20component" target="_blank">Can I use?</a></p>
+				</section>
+
+				<section>
+					<h2>&lt;hello-there&gt;</h2>
+					<pre><code><hello-there name="everybody"></hello-there></code></pre>
+<pre class="fragment"><code><template id="hello-there-tpl">
+  <style>
+    p { color: orange; }
+  </style>
+  <p>Hello <span></span>!</p>
+</template></code></pre>
+				</section>
+
+				<section>
+					<h2>&lt;hello-there&gt; 2/2</h2>
+					<pre><code>var HelloThere = document.registerElement('hello-there', {
+  prototype: Object.create(HTMLElement.prototype, {
+    createdCallback: {
+      value: function() {
+        this.name = this.getAttribute('name') || 'world';
+        var tmpl = document.querySelector('#hello-there-tpl');
+        var clone = document.importNode(tmpl.content, true);
+        clone.querySelector('span').textContent = this.name;
+        this.createShadowRoot().appendChild(clone);
+      }
+    },
+    alert: {
+      value: function() {
+        alert(this.name);
+      }
+    }
+  })
+});</code></pre>
+<template id="hello-there-tpl">
+  <style>
+    p { color: orange; }
+  </style>
+  <p>Hello <span></span>!</p>
+</template>
+<script>
+var HelloThere = document.registerElement('hello-there', {
+  prototype: Object.create(HTMLElement.prototype, {
+    createdCallback: {
+      value: function() {
+      	this.name = this.getAttribute('name') || 'world';
+	      var tmpl = document.querySelector('#hello-there-tpl');
+	      var clone = document.importNode(tmpl.content, true);
+	      clone.querySelector('span').textContent = this.name;
+	      this.createShadowRoot().appendChild(clone);
+	  	}
+    },
+    alert: {
+    	value: function() {
+    		alert(this.name);
+    	}
+    }
+  })
+});
+</script>
+<hello-there name="everybody" class="fragment"></hello-there>
+
+				</section>
+
+				<section>
+					<h2>Present</h2>
+					<ul>
+						<li class="fragment">
+							<a href="https://www.polymer-project.org/1.0/" target="_blank">Polymer project</a>
+							<ul>
+								<li class="fragment">polyfills</li>
+								<li class="fragment">simplified API for web components</li>
+							</ul>
+						</li>
+						<li class="fragment"><a href="http://www.x-tags.org/" target="_blank">X-Tag</a></li>
+						<li class="fragment"><a href="http://component.kitchen/components" target="_blank">Components kitchen</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Future</h2>
+					<ul>
+						<li>Angular 2, Aurelia, Ember 2</li>
+						<li>built on web components concepts</li>
+						<li>router, components, templates, DI, component's lifecycle</li>
+					</ul>
+					<table class="fragment">
+						<thead>
+							<tr>
+								<th width="50%">Aurelia</th>
+								<th>Angular 2</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Object.observe()</td>
+								<td>zone.js</td>
+							</tr>
+							<tr>
+								<td>two way binding</td>
+								<td>immutable data O(1)</td>
+							</tr>
+							<tr>
+								<td>convention over configuration</td>
+								<td>decorators</td>
+							</tr>
+							<tr>
+								<td>attr.bind, click.trigger</td>
+								<td>templates using *, () & []</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<section>
+					<h2>Mobile</h2>
+					<ul>
+						<li class="fragment">web view</li>
+						<li class="fragment">Appcelerator, cordova + ionic (2)</li>
+						<li class="fragment"><a href="https://facebook.github.io/react-native/" target="_blank">React native</a> (iOS)</li>
+						<li class="fragment"><a href="https://www.nativescript.org" target="_blank">NativeScript</a> (all platforms)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Lets build an app</h1>
+					<ul class="fragment">
+						<li>Aurelia</li>
+						<li>Router</li>
+						<li>Flickr</li>
+						<li>Child router</li>
+						<li>Library mini app</li>
+						<li>Polymer components</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Lets start!</h2>
+					<pre><code>git clone -b step-1 \
+  https://github.com/matjaz/webcomponents-workshop.git</code></pre>
+					<pre><code>cd webcomponents-workshop
+cd aurelia
+npm install
+npm install -g gulp jspm
+jspm install -y</code></pre>
+					<pre><code>gulp watch</code></pre>
+				</section>
+
+				<section>
+					<h2>Adding router...</h2>
+					<pre><code>git checkout step-2</code></pre>
+					<ul>
+						<li>configureRouter</li>
+						<li>.map()</li>
+						<li>navigation</li>
+						<li>@bindable, @computedFrom</li>
+						<li>tests</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Adding Flickr</h2>
+					<pre><code>git checkout step-3</code></pre>
+					<ul>
+						<li>Dependency injection</li>
+						<li>Screen activation cycle</li>
+						<li>Test stub</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Adding child router</h2>
+					<pre><code>git checkout step-4</code></pre>
+				</section>
+
+				<section data-background="http://s.quickmeme.com/img/ed/ed34a4975473ca79a3588c0a6881fb04713a455bf3befabdd19e27744f22055e.jpg" data-background-size="800px" data-transition="none">
+					<h2>Adding child router</h2>
+					<pre><code>git checkout step-4</code></pre>
+				</section>
+
+				<section>
+					<h2>Adding library</h2>
+					<pre><code>git checkout step-5</code></pre>
+					<pre><code>cd server
+npm i
+npm start</code></pre>
+					<ul>
+						<li>REST</li>
+						<li>Custom elements</li>
+						<li>repeat, binding</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Adding Polymer components</h2>
+					<pre><code>bower install google-map
+bower install pazguille/github-card
+git checkout step-6</code></pre>
+					<ul>
+						<li>Frameworks co-existance</li>
+						<li>Code re-use</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+				<section>
+					<h1>Thank you!</h1>
+					<p>
+						<a href="https://github.com/matjaz/webcomponents-workshop">github.com/matjaz/webcomponents-workshop</a>
+					</p>
+					<p>
+						<small><a href="https://twitter.com/MatjazL">Matjaž Lipuš</a> / <a href="https://twitter.com/MatjazL">@MatjazL</a></small>
+					</p>
+				</section>
+			</div>
+		</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide',
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
